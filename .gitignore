@@ -1,0 +1,4 @@
+# Zygor's own guide data is subscription content and is never committed here.
+# Drop a leveling guide file from your own ZygorGuidesViewerClassic install into
+# Guides/ and list it in Guides/Autoload.xml -- see README.md.
+Guides/*.lua

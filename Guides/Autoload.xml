@@ -1,0 +1,10 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..
+\FrameXML\UI.xsd">
+	<!-- Guide files to load. Guide data is not part of this repository: copy a leveling
+	     guide out of your own ZygorGuidesViewerClassic install into this directory and
+	     list it below. Files named here must exist. See README.md. -->
+	
+	<Script file="ZygorLevelingHordeCLASSIC.lua"/>
+	<Script file="ZygorLevelingAllianceCLASSIC.lua"/>
+
+</Ui>

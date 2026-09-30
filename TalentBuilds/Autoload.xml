@@ -1,0 +1,16 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/..
+\FrameXML\UI.xsd">
+	<!-- Talent build files to load. A build of your own goes into a new file in this
+	     directory, listed below; see README.md for the format. Files named here must exist. -->
+
+	<Script file="Warrior.lua"/>
+	<Script file="Paladin.lua"/>
+	<Script file="Hunter.lua"/>
+	<Script file="Rogue.lua"/>
+	<Script file="Priest.lua"/>
+	<Script file="Mage.lua"/>
+	<Script file="Warlock.lua"/>
+	<Script file="Shaman.lua"/>
+	<Script file="Druid.lua"/>
+
+</Ui>

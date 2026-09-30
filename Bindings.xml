@@ -1,0 +1,17 @@
+<Bindings>
+    <Binding name="ZYGORGUIDESVIEWERNG_ACTION1" header="ZYGORGUIDESVIEWERNG">
+        ZGV:GoalAction(1)
+    </Binding>
+    <Binding name="ZYGORGUIDESVIEWERNG_ACTION2">
+        ZGV:GoalAction(2)
+    </Binding>
+    <Binding name="ZYGORGUIDESVIEWERNG_ACTION3">
+        ZGV:GoalAction(3)
+    </Binding>
+    <Binding name="ZYGORGUIDESVIEWERNG_ACTION4">
+        ZGV:GoalAction(4)
+    </Binding>
+    <Binding name="ZYGORGUIDESVIEWERNG_ACTION5">
+        ZGV:GoalAction(5)
+    </Binding>
+</Bindings>
