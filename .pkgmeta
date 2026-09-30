@@ -1,0 +1,33 @@
+package-as: ZygorGuidesViewerNG
+
+manual-changelog: CHANGELOG.md
+enable-toc-creation: yes
+
+externals:
+  lib/LibStub: https://github.com/laytya/LibStub
+  lib/CallbackHandler-1.0: https://github.com/dh-harald/Ace3v/CallbackHandler-1.0
+  lib/Ace3/AceAddon-3.0: https://github.com/laytya/Ace3v/AceAddon-3.0
+  lib/Ace3/AceBucket-3.0: https://github.com/laytya/Ace3v/AceBucket-3.0
+  lib/Ace3/AceConfig-3.0: https://github.com/laytya/Ace3v/AceConfig-3.0
+  lib/Ace3/AceConfigRegistry-3.0: https://github.com/dh-harald/Ace3v/AceConfigRegistry-3.0
+  lib/Ace3/AceConsole-3.0: https://github.com/dh-harald/Ace3v/AceConsole-3.0
+  lib/Ace3/AceCore-3.0: https://github.com/dh-harald/Ace3v/AceCore-3.0
+  lib/Ace3/AceDB-3.0: https://github.com/dh-harald/Ace3v/AceDB-3.0
+  lib/Ace3/AceEvent-3.0: https://github.com/dh-harald/Ace3v/AceEvent-3.0
+  lib/Ace3/AceGUI-3.0: https://github.com/laytya/Ace3v/AceGUI-3.0
+  lib/Ace3/AceHook-3.0: https://github.com/dh-harald/Ace3v/AceHook-3.0
+  lib/Ace3/AceLocale-3.0: https://github.com/laytya/Ace3v/AceLocale-3.0
+  lib/Ace3/AceTimer-3.0: https://github.com/laytya/Ace3v/AceTimer-3.0
+  lib/LibConfig-1.0: https://github.com/dh-harald/Ace3v/LibConfig-1.0
+  lib/LibDBIcon-1.0: https://github.com/dh-harald/Ace3v/LibDBIcon-1.0
+  lib/LibDataBroker-1.1: https://github.com/dh-harald/Ace3v/LibDataBroker-1.1
+  lib/LibDeformat-2.0: https://github.com/dh-harald/Ace3v/LibDeformat-2.0
+  lib/LibGratuity-2.0: https://github.com/dh-harald/Ace3v/LibGratuity-2.0
+  lib/LibHereBeDragons-1.0: https://github.com/dh-harald/Ace3v/LibHereBeDragons-1.0
+  lib/LibTaxi-1.0: https://github.com/dh-harald/Ace3v/LibTaxi-1.0
+  lib/LibRover-1.0: https://github.com/dh-harald/Ace3v/LibRover-1.0
+  lib/LibItemBonusLib-1.0: https://github.com/dh-harald/Ace3v/LibItemBonusLib-1.0
+  lib/LibItemPrice-1.1: https://github.com/dh-harald/Ace3v/LibItemPrice-1.1
+
+ignore:
+  - release.config.js
