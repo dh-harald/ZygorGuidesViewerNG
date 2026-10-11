@@ -12,6 +12,12 @@
 
 local QuestItem = ZGV.ItemScore.QuestItem
 
+-- A refused GetQuestReward (bags full) makes the server resend the reward screen, which
+-- fires QUEST_COMPLETE again; without this guard that loops forever. The same title is
+-- auto-rewarded at most once per window, after which the reward screen is left to the player.
+local REWARD_RETRY_WINDOW = 10
+local lastRewardTitle, lastRewardTime
+
 local function FindStepGoal(action, title)
     if not ZGV.CurrentStep or not title then return nil end
     for _, goal in ipairs(ZGV.CurrentStep.goals) do
@@ -100,7 +106,12 @@ function ZGV:OnQuestAutoComplete()
     end
 
     if not ZGV.db.profile.autoCompleteQuests then return end
-    if not FindStepGoal("turnin", GetTitleText()) then return end
+    local title = GetTitleText()
+    if not FindStepGoal("turnin", title) then return end
+
+    local now = GetTime()
+    if title == lastRewardTitle and now - lastRewardTime < REWARD_RETRY_WINDOW then return end
+    lastRewardTitle, lastRewardTime = title, now
 
     if numChoices <= 1 then
         GetQuestReward(numChoices)
