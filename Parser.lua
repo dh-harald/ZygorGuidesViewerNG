@@ -403,6 +403,9 @@ function Parser:ParseEntry(guide)
 
         if line ~= "" then
             local goal
+            -- A |tip on a line of its own (see the tip command below), which takes that
+            -- line's |notinsticky and |only/|if.
+            local linetip
 
             line = line .. "|"
             for chunk in string.gmatch(line, "%s*(.-)%s*|+") do
@@ -535,7 +538,7 @@ function Parser:ParseEntry(guide)
                             if target then target.force_sticky = true end
 
                         elseif cmd == "notinsticky" then
-                            local target = ModifierTarget(goal)
+                            local target = linetip or ModifierTarget(goal)
                             if target then target.notinsticky = true end
 
                         elseif cmd == "stickyif" then
@@ -550,7 +553,14 @@ function Parser:ParseEntry(guide)
                         elseif cmd == "only" or cmd == "if" then
                             local cond = (cmd == "if") and params or string.match(params, "^if%s+(.*)$")
 
-                            if cond then
+                            if linetip then
+                                -- Gates just the tip, as on a goal of its own.
+                                if cond then
+                                    linetip.condition_visible = function() return EvaluateCondition(cond) end
+                                elseif not EvaluateCondition(params) then
+                                    linetip.hidden = true
+                                end
+                            elseif cond then
                                 -- "|only if <condition>" / "|if <condition>": stored as a
                                 -- live-evaluated function (matching the reference's
                                 -- condition_visible), re-checked every time visibility is
@@ -634,10 +644,16 @@ function Parser:ParseEntry(guide)
                             -- A goal can have several |tip lines in a row (real guide data
                             -- does this a lot) -- append, don't overwrite, so only the last
                             -- one wasn't lost.
+                            -- ZygorGuidesViewerClassic makes a |tip on a line of its own a goal of its
+                            -- own, so that line's |notinsticky and |only/|if apply to the tip, not
+                            -- to the goal above it. Here the tip still renders under that goal
+                            -- (Goal:GetTip), with its own visibility.
                             local target = ModifierTarget(goal)
                             if target then
-                                local tip = HighlightText(params)
-                                target.tip = target.tip and (target.tip.."\n"..tip) or tip
+                                local tip = { text = HighlightText(params) }
+                                target.tips = target.tips or {}
+                                tinsert(target.tips, tip)
+                                if not goal then linetip = tip end
                             end
 
                         elseif cmd == "walk" or cmd == "zombiewalk" then

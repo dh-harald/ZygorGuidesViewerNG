@@ -161,6 +161,20 @@ function Goal:GetStatus()
     return "incomplete", numdone, numneeded
 end
 
+-- The goal's |tip lines that are visible right now, joined by newlines, or nil.
+function Goal:GetTip()
+    if not self.tips then return nil end
+    local text
+    for _, tip in ipairs(self.tips) do
+        if not tip.hidden
+            and not (tip.notinsticky and self.parentStep:IsCurrentlySticky())
+            and not (tip.condition_visible and not tip.condition_visible()) then
+            text = text and (text .. "\n" .. tip.text) or tip.text
+        end
+    end
+    return text
+end
+
 function Goal:UpdateStatus()
     -- numdone/numneeded (e.g. 3/10 Kobold Vermin slain) are kept on the goal, not just
     -- returned, so the frame's row rendering (progress text + red->green color gradient)

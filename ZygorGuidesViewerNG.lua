@@ -616,7 +616,7 @@ local function GetRow(content, index)
         row.text:SetPoint("TOPLEFT", row.icon, "TOPRIGHT", 4, 0)
         row.text:SetPoint("RIGHT", row, "RIGHT", -4, 0)
 
-        -- |tip text (goal.tip): smaller, directly below the main text, in the reference
+        -- |tip text (Goal:GetTip): smaller, directly below the main text, in the reference
         -- viewer's tip colour (|cffeeeecc).
         row.tip = row:CreateFontString(nil, "ARTWORK")
         row.tip:SetFont(FONT_REGULAR, TIP_FONT_SIZE)
@@ -736,10 +736,11 @@ function ZGV:UpdateFrame(skipAutoAdvance)
         end
 
         local goalText = goal:GetText()
+        local goalTip = goal:GetTip()
 
         -- A goal with empty text (a bare "'" in the guide) still counts for completion, but
         -- gets no row unless it has a tip to show.
-        if goalText == "" and not goal.tip then return end
+        if goalText == "" and not goalTip then return end
 
         if goal.action == "kill" then
             if seenKillGoals[goalText] then return end
@@ -791,8 +792,8 @@ function ZGV:UpdateFrame(skipAutoAdvance)
 
         local textBottom = TEXT_TOP + textLines * TEXT_HEIGHT
         local rowHeight = math.max(ROW_HEIGHT, textBottom + 2)
-        if goal.tip then
-            local tip, tipLines = WrapText(row.tip, goal.tip, TEXT_WIDTH)
+        if goalTip then
+            local tip, tipLines = WrapText(row.tip, goalTip, TEXT_WIDTH)
             row.tip:SetText(tip)
             -- The text can now be several lines, so re-anchor the tip below its actual
             -- bottom rather than the fixed single-line offset GetRow set.
